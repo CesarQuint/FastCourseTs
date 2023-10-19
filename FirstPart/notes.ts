@@ -167,3 +167,90 @@ const thor = createHero({
 //! Union Types
 
 let ann: string | number;
+
+type PowerSuper = 'normal' | 'standard';
+
+//! Intersection Types
+
+type Human = {
+  name: string;
+  age: number;
+};
+
+type SuperHero = {
+  id?: string;
+  scalePower: PowerSuper;
+};
+
+type HumanSuper = Human & SuperHero;
+
+//! Type Indexin
+
+type HeroProperties = {
+  isActive: boolean;
+  id?: string;
+  address: {
+    planet: string;
+    city: string;
+  };
+};
+
+const addressHero: HeroProperties['address'] = {
+  planet: 'Pluto',
+  city: 'NNd4',
+};
+
+//! Type from Value
+
+const address = {
+  planet: 'PP',
+  number: 22,
+};
+
+type Address = typeof address;
+
+const nwAdrress: Address = {
+  planet: 'Earth',
+  number: 3,
+};
+
+//? Arrays
+//* Formas de definirlo
+let firstArr: string[] = [];
+let otherArr: Array<string> = [];
+
+//! Array de Objetos
+
+const adressArray: Address[] = [];
+
+//! Array de Arrays o Matrices ,Tuplas
+
+//** Queremos crear esto  [['X','O','X'],['O','O','X'],['O','X','X']]*/
+
+//?Para especificar que queremos recivir podriamos empezar con esto
+
+const game: string[][] = [
+  ['X', 'O', 'X'],
+  ['O', 'O', 'X'],
+  ['O', 'X', 'X'],
+];
+
+//! Pero esto nos permitiria insertar cualquier otra letra o mas de 3 lineas ,para eso hay que definir types
+
+type CellValue = 'X' | 'O' | '';
+
+//!Duplas son Arrays que tienen fijado un limite de longitud
+
+type GameBoard = [
+  [CellValue, CellValue, CellValue],
+  [CellValue, CellValue, CellValue],
+  [CellValue, CellValue, CellValue]
+];
+
+//* De esta forma podremos definir de esta forma
+
+const betterGame: GameBoard = [
+  ['X', 'O', 'X'],
+  ['O', 'O', 'X'],
+  ['O', 'X', 'X'],
+];
